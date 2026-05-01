@@ -1,0 +1,13 @@
+# Collector specific configuration
+dataset_title: "CBPF Allocations and Contributions"
+dataset_name: "cbpf-allocations-and-contributions"
+
+contribution_url: "https://cbpfapi.unocha.org/vo1/odata/Contribution"
+project_summary_url: "https://cbpfapi.unocha.org/vo1/odata/ProjectSummary"
+
+contributions_description: "This csv contains all the contributions in the pooled funds system."
+project_summary_description: "This csv contains the project summaries for all approved projects."
+
+tags:
+  - funding
+  - humanitarian response plan-hrp
