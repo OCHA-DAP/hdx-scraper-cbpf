@@ -1,9 +1,9 @@
-# Collector for Cbpf Datasets
+# Collector for CBPF Datasets
 [![Build Status](https://github.com/OCHA-DAP/hdx-scraper-cbpf/actions/workflows/run-python-tests.yaml/badge.svg)](https://github.com/OCHA-DAP/hdx-scraper-cbpf/actions/workflows/run-python-tests.yaml)
 [![Coverage Status](https://coveralls.io/repos/github/OCHA-DAP/hdx-scraper-cbpf/badge.svg?branch=main&ts=1)](https://coveralls.io/github/OCHA-DAP/hdx-scraper-cbpf?branch=main)
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 
-This scraper fetches data once a day from the CBPF API and updates two CSV resources in the HDX dataset [cbpf-allocations-and-contributions](https://data.humdata.org/dataset/cbpf-allocations-and-contributions), preserving the existing resource IDs.
+This scraper reads from 2 CBPF API endpoints ([Contribution](https://cbpfapi.unocha.org/vo1/odata/Contribution) and [ProjectSummary](https://cbpfapi.unocha.org/vo1/odata/ProjectSummary)). It makes 1 read from HDX to retrieve existing resource IDs and 1 write to HDX to update the dataset [cbpf-allocations-and-contributions](https://data.humdata.org/dataset/cbpf-allocations-and-contributions). It creates 2 temporary CSV files (approximately 9MB and 800KB) which it uploads to HDX. It is run every day.
 
 ## Development
 
