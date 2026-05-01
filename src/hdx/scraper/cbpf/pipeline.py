@@ -53,7 +53,9 @@ class Pipeline:
             return {}
         return {r["name"]: r["id"] for r in existing.get_resources()}
 
-    def generate_dataset(self, existing_resource_ids: dict | None = None) -> Dataset | None:
+    def generate_dataset(
+        self, existing_resource_ids: dict | None = None
+    ) -> Dataset | None:
         resource_id_map = (
             existing_resource_ids
             if existing_resource_ids is not None

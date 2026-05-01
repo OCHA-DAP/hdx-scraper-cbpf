@@ -14,7 +14,10 @@ EXPECTED_DATASET = {
     "dataset_date": "[2014-01-01T00:00:00 TO 2014-06-03T23:59:59]",
     "tags": [
         {"name": "funding", "vocabulary_id": "b891512e-9516-4bf5-962a-7a289772a2a1"},
-        {"name": "humanitarian response plan-hrp", "vocabulary_id": "b891512e-9516-4bf5-962a-7a289772a2a1"},
+        {
+            "name": "humanitarian response plan-hrp",
+            "vocabulary_id": "b891512e-9516-4bf5-962a-7a289772a2a1",
+        },
     ],
     "groups": [{"name": "world"}],
     "license_id": "cc-by",
