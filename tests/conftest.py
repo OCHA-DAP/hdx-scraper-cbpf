@@ -35,6 +35,7 @@ def configuration(config_dir):
     Locations.set_validlocations(
         [
             {"name": "world", "title": "World"},
+            {"name": "afg", "title": "Afghanistan"},
         ]
     )
     Country.countriesdata(False)

@@ -57,16 +57,17 @@ def main(
                 use_saved=use_saved,
             )
             pipeline = Pipeline(configuration, retriever, tempdir)
-            #
-            # Steps to generate dataset
-            #
-            dataset = pipeline.generate_dataset()
-            if dataset:
+            for dataset in pipeline.generate_datasets():
                 dataset.update_from_yaml(
                     script_dir_plus_file(
                         join("config", "hdx_dataset_static.yaml"), main
                     )
                 )
+                if not any(g["name"] == "world" for g in dataset.get("groups", [])):
+                    country_name = dataset["title"].split(" - ")[0]
+                    dataset["notes"] = (
+                        dataset["notes"].rstrip(".") + f" for {country_name}."
+                    )
                 dataset.create_in_hdx(
                     remove_additional_resources=False,
                     match_resource_order=False,
@@ -78,7 +79,7 @@ def main(
 if __name__ == "__main__":
     facade(
         main,
-        # hdx_site="demo",
+        hdx_site="stage",
         user_agent_config_yaml=join(expanduser("~"), ".useragents.yaml"),
         user_agent_lookup=_LOOKUP,
         project_config_yaml=script_dir_plus_file(
