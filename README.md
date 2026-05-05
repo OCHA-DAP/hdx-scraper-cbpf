@@ -3,7 +3,29 @@
 [![Coverage Status](https://coveralls.io/repos/github/OCHA-DAP/hdx-scraper-cbpf/badge.svg?branch=main&ts=1)](https://coveralls.io/github/OCHA-DAP/hdx-scraper-cbpf?branch=main)
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 
-This scraper reads from 2 CBPF API endpoints ([Contribution](https://cbpfapi.unocha.org/vo1/odata/Contribution) and [ProjectSummary](https://cbpfapi.unocha.org/vo1/odata/ProjectSummary)). It makes 1 read from HDX to retrieve existing resource IDs and 1 write to HDX to update the dataset [cbpf-allocations-and-contributions](https://data.humdata.org/dataset/cbpf-allocations-and-contributions). It creates 2 temporary CSV files (approximately 9MB and 800KB) which it uploads to HDX. It is run every day.
+This scraper reads from 2 CBPF API endpoints ([Contribution](https://cbpfapi.unocha.org/vo1/odata/Contribution) and [ProjectSummary](https://cbpfapi.unocha.org/vo1/odata/ProjectSummary)) and produces datasets on HDX.
+
+### Global dataset
+
+One dataset covering all countries — [cbpf-allocations-and-contributions](https://data.humdata.org/dataset/cbpf-allocations-and-contributions) — with 2 resources:
+
+| Resource | Description |
+|----------|-------------|
+| `global_cbpf_contributions.csv` | All contributions across all pooled funds |
+| `global_cbpf_project_summary.csv` | Project summaries for all approved projects |
+
+### Country datasets
+
+One dataset per CBPF pooled fund, named `[country]-cbpf-allocations-and-contributions` (e.g. [afghanistan-cbpf-allocations-and-contributions](https://data.humdata.org/dataset/afghanistan-cbpf-allocations-and-contributions)), each with 2 resources filtered to that country:
+
+| Resource | Description |
+|----------|-------------|
+| `[iso3]_cbpf_contributions.csv` | Contributions for the country |
+| `[iso3]_cbpf_project_summary.csv` | Project summaries for the country |
+
+Country datasets link directly to the filtered CBPF API endpoint (e.g. `?poolfundAbbrv=AFG23`) so users can access live data for that fund.
+
+The scraper makes 1 read from HDX to retrieve existing resource IDs for the global dataset and 1 write per dataset to HDX. It is run every day.
 
 ## Development
 
