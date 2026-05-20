@@ -53,7 +53,21 @@ class Pipeline:
         existing = Dataset.read_from_hdx(self._configuration["dataset_name"])
         if not existing:
             return {}
-        return {r["name"]: r["id"] for r in existing.get_resources()}
+        by_name = {r["name"]: r["id"] for r in existing.get_resources()}
+        legacy_map = self._configuration.get("legacy_resource_name_map", {})
+        result = {}
+        for old_name, new_name in legacy_map.items():
+            if old_name in by_name:
+                result[new_name] = by_name[old_name]
+            elif new_name in by_name:
+                result[new_name] = by_name[new_name]
+        return result
+
+    def _get_preserved_resources(self) -> list:
+        existing = Dataset.read_from_hdx(self._configuration["dataset_name"])
+        if not existing:
+            return []
+        return [r for r in existing.get_resources() if r["format"].lower() != "csv"]
 
     def generate_datasets(
         self, existing_resource_ids: dict | None = None
@@ -118,6 +132,9 @@ class Pipeline:
                 resourcedata=resource_data,
                 headers=list(rows[0].keys()),
             )
+        if existing_resource_ids is None:
+            for resource in self._get_preserved_resources():
+                global_dataset.add_update_resource(resource, ignore_datasetid=True)
         datasets.append(global_dataset)
 
         # Country datasets

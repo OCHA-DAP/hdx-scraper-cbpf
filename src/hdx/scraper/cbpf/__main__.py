@@ -68,9 +68,10 @@ def main(
                     dataset["notes"] = (
                         dataset["notes"].rstrip(".") + f" for {country_name}."
                     )
+                is_global = any(g["name"] == "world" for g in dataset.get("groups", []))
                 dataset.create_in_hdx(
-                    remove_additional_resources=False,
-                    match_resource_order=False,
+                    remove_additional_resources=is_global,
+                    match_resource_order=True,
                     updated_by_script=_UPDATED_BY_SCRIPT,
                     batch=info["batch"],
                 )

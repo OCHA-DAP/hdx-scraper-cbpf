@@ -11,3 +11,7 @@ project_summary_description: "This csv contains the project summaries for all ap
 tags:
   - funding
   - humanitarian response plan-hrp
+
+legacy_resource_name_map:
+  Contributions.csv: global_cbpf_contributions.csv
+  ProjectSummary.csv: global_cbpf_project_summary.csv
