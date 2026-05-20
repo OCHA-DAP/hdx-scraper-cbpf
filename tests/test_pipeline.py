@@ -28,7 +28,7 @@ EXPECTED_DATASET = {
     "private": False,
     "maintainer": "d1e11ac4-8fa2-485a-8e16-d5bd90aee1a0",
     "owner_org": "75b74751-1b97-4cde-939b-1e4fb083c85c",
-    "data_update_frequency": -2,
+    "data_update_frequency": 30,
     "notes": "This dataset contains approved project allocations from Country-Based Pooled Funds (CBPFs) and the contributions received by each fund.",
 }
 
@@ -65,7 +65,7 @@ EXPECTED_COUNTRY_DATASET = {
     "private": False,
     "maintainer": "d1e11ac4-8fa2-485a-8e16-d5bd90aee1a0",
     "owner_org": "75b74751-1b97-4cde-939b-1e4fb083c85c",
-    "data_update_frequency": -2,
+    "data_update_frequency": 30,
     "notes": "This dataset contains approved project allocations from Country-Based Pooled Funds (CBPFs) and the contributions received by each fund for Afghanistan.",
 }
 
