@@ -1,6 +1,6 @@
 license_id: cc-by
-methodology: Census
-caveats:
+methodology: Registry
+caveats: Although the stated expected update frequency is monthly, updates to the data may occur more or less frequently.
 dataset_source: CBPF
 package_creator: HDX Data Systems Team
 private: False
